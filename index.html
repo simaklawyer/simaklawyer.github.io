@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Симаков Владислав Юрьевич — Юридические документы онлайн</title>
+    <meta name="description" content="Профессиональное составление юридических документов онлайн. Претензии, иски, договоры, жалобы. От 1000 ₽. Самозанятый Симаков Владислав Юрьевич. ИНН 253202682567.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Симаков Владислав Юрьевич — Юридические документы онлайн">
+    <meta property="og:description" content="Профессиональное составление юридических документов онлайн. Претензии, иски, договоры, жалобы. От 1000 ₽.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Favicon (встроенный SVG, без внешних файлов) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Crect x='4' y='4' width='92' height='92' rx='16' fill='none' stroke='%23c9a96e' stroke-width='4'/%3E%3Ctext x='50' y='64' font-family='Georgia,serif' font-size='38' font-weight='bold' fill='%23c9a96e' text-anchor='middle'%3EВЮ%3C/text%3E%3C/svg%3E">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.0/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.0/index.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        body { background: #0a0a0a; color: #fff; }
+
+        :root {
+            --gold: #c9a96e;
+            --gold-light: #e8d5a3;
+            --gold-dark: #a88a4e;
+        }
+
+        .text-gold { color: var(--gold); }
+        .bg-gold { background: var(--gold); }
+        .border-gold { border-color: var(--gold); }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #c9a96e, #e8d5a3, #c9a96e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #c9a96e, #e8d5a3, #a88a4e);
+        }
+
+        .card-dark {
+            background: linear-gradient(145deg, #1a1a1a, #111111);
+            border: 1px solid rgba(201, 169, 110, 0.15);
+            transition: all 0.3s ease;
+        }
+        .card-dark:hover {
+            border-color: rgba(201, 169, 110, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: var(--gold); }
+
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.85) 45%, rgba(10,10,10,0.97) 100%),
+                        radial-gradient(circle at 15% 20%, rgba(201,169,110,0.16), transparent 45%),
+                        radial-gradient(circle at 85% 75%, rgba(201,169,110,0.10), transparent 40%);
+        }
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(201,169,110,0.06)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #c9a96e, #a88a4e);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #e8d5a3, #c9a96e);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 110, 0.3);
+        }
+        .btn-gold:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-outline-gold {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+        .btn-outline-gold:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .stat-number { font-family: 'Playfair Display', serif; }
+        .glow-gold { box-shadow: 0 0 40px rgba(201, 169, 110, 0.15); }
+
+        .marquee { animation: marquee 35s linear infinite; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Плавное появление блоков при прокрутке */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Всплывающие уведомления (тосты) */
+        .toast {
+            animation: toastIn 0.3s ease, toastOut 0.3s ease 3.7s forwards;
+        }
+        @keyframes toastIn {
+            from { transform: translateX(120%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes toastOut {
+            to { transform: translateX(120%); opacity: 0; }
+        }
+
+        /* Кнопка "наверх" */
+        #scrollTopBtn {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #scrollTopBtn.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        input[type="checkbox"] { accent-color: var(--gold); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+        /* Явный фокус для клавиатурной навигации */
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        /* Защита от переполнения на очень узких экранах */
+        img, svg { max-width: 100%; }
+    </style>
+</head>
+<body class="overflow-x-hidden font-sans max-w-[100vw]">
+
+    <!-- Уведомления -->
+    <div id="toastContainer" class="fixed top-4 right-4 left-4 sm:left-auto sm:top-6 sm:right-6 z-[100] flex flex-col gap-2 items-end"></div>
+
+    <!-- Верхняя информационная строка -->
+    <div class="bg-black/90 border-b border-[#c9a96e]/25 py-2.5 px-4 text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-center sm:justify-between items-center gap-x-4 gap-y-1.5">
+            <div class="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 text-gray-400 min-w-0">
+                <span class="flex items-center gap-1.5 min-w-0">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#c9a96e] flex-shrink-0"></i>
+                    <span class="truncate">г. Владивосток</span>
+                </span>
+                <span class="hidden sm:flex items-center gap-1.5 min-w-0">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#c9a96e] flex-shrink-0"></i>
+                    <span class="truncate">Самозанятый | ИНН 253202682567</span>
+                </span>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 min-w-0">
+                <a href="mailto:Arrusi@bk.ru" class="flex items-center gap-1.5 text-gray-400 hover:text-[#c9a96e] transition min-w-0">
+                    <i data-lucide="mail" class="w-3.5 h-3.5 text-[#c9a96e] flex-shrink-0"></i>
+                    <span class="truncate">Arrusi@bk.ru</span>
+                </a>
+                <a href="tel:+79652413038" class="flex items-center gap-1.5 text-gray-400 hover:text-[#c9a96e] transition font-semibold min-w-0">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-[#c9a96e] flex-shrink-0"></i>
+                    <span class="truncate">8 (965) 241-30-38</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Шапка сайта и меню -->
+    <nav class="sticky top-0 z-50 bg-black/85 backdrop-blur-xl border-b border-[#c9a96e]/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
+            <a href="#home" class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 border-2 border-[#c9a96e] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span class="font-serif text-[#c9a96e] font-bold text-sm">ВЮ</span>
+                </div>
+                <div class="min-w-0">
+                    <div class="font-serif text-lg font-bold text-white tracking-wider truncate">СИМАКОВ</div>
+                    <div class="text-[10px] text-[#c9a96e] tracking-widest uppercase truncate">Юридические документы</div>
+                </div>
+            </a>
+            <div class="hidden lg:flex items-center gap-6 xl:gap-8 flex-shrink-0">
+                <a href="#home" class="nav-link text-sm font-medium text-gray-300 hover:text-[#c9a96e] transition">Главная</a>
+                <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-[#c9a96e] transition">Обо мне</a>
+                <a href="#services" class="nav-link text-sm font-medium text-gray-300 hover:text-[#c9a96e] transition">Направления</a>
+                <a href="#pricing" class="nav-link text-sm font-medium text-gray-300 hover:text-[#c9a96e] transition">Прайс-лист</a>
+                <a href="#process" class="nav-link text-sm font-medium text-gray-300 hover:text-[#c9a96e] transition">Как работаем</a>
+                <a href="#contact" class="btn-gold px-5 xl:px-6 py-2.5 rounded-lg text-sm whitespace-nowrap">Заказать документ</a>
+            </div>
+            <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg hover:bg-white/10 text-white flex-shrink-0" aria-label="Открыть меню" aria-expanded="false">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <!-- Мобильное выпадающее меню -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-[#c9a96e]/20 bg-black/95 backdrop-blur-xl">
+            <div class="px-6 py-4 flex flex-col gap-3">
+                <a href="#home" class="mobile-link py-2 text-gray-300 hover:text-[#c9a96e]">Главная</a>
+                <a href="#about" class="mobile-link py-2 text-gray-300 hover:text-[#c9a96e]">Обо мне</a>
+                <a href="#services" class="mobile-link py-2 text-gray-300 hover:text-[#c9a96e]">Направления</a>
+                <a href="#pricing" class="mobile-link py-2 text-gray-300 hover:text-[#c9a96e]">Прайс-лист</a>
+                <a href="#process" class="mobile-link py-2 text-gray-300 hover:text-[#c9a96e]">Как работаем</a>
+                <a href="#contact" class="mobile-link btn-gold text-center py-2.5 rounded-lg text-sm mt-2">Заказать документ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главный экран (Hero) -->
+    <section id="home" class="relative min-h-[90vh] flex items-center overflow-hidden py-16">
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-slate-950 to-zinc-900 hero-pattern"></div>
+        <div class="hero-overlay absolute inset-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 fade-in">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#c9a96e]/30 bg-[#c9a96e]/10 text-[#c9a96e] text-xs sm:text-sm font-medium max-w-full">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></span>
+                        <span>Без личных встреч и судов — быстро и эффективно</span>
+                    </div>
+                    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold leading-tight break-words">
+                        Профессиональное составление <span class="gold-gradient">юридических документов</span> онлайн!
+                    </h1>
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                        Меня зовут Владислав, я профессиональный юрист с более чем 5-летним опытом. Специализируюсь исключительно на составлении юридических документов — без личных встреч и без сопровождения в суде. Только написал и отправил: быстро, удобно, эффективно!
+                    </p>
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-4 pt-2">
+                        <a href="#contact" class="btn-gold w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-center inline-flex items-center justify-center gap-2 shadow-lg">
+                            <span>Оставить заявку</span> <i data-lucide="arrow-right" class="w-5 h-5 flex-shrink-0"></i>
+                        </a>
+                        <a href="#pricing" class="btn-outline-gold w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-center inline-flex items-center justify-center gap-2">
+                            <span>Смотреть цены от 1 000 ₽</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-[#c9a96e]/20 text-sm">
+                        <div class="min-w-0">
+                            <span class="stat-number block text-xl sm:text-2xl md:text-3xl font-bold gold-gradient">5+ лет</span>
+                            <span class="text-gray-400 text-xs sm:text-sm">Опыта работы</span>
+                        </div>
+                        <div class="min-w-0">
+                            <span class="stat-number block text-xl sm:text-2xl md:text-3xl font-bold gold-gradient">1–3 дня</span>
+                            <span class="text-gray-400 text-xs sm:text-sm">Срок подготовки</span>
+                        </div>
+                        <div class="min-w-0">
+                            <span class="stat-number block text-xl sm:text-2xl md:text-3xl font-bold gold-gradient">100%</span>
+                            <span class="text-gray-400 text-xs sm:text-sm">Конфиденциально</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка профиля юриста -->
+                <div class="card-dark rounded-3xl p-6 sm:p-8 glow-gold space-y-6 fade-in" style="transition-delay: 0.15s;">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl gold-gradient-bg flex items-center justify-center text-black text-2xl font-bold shadow-lg flex-shrink-0">
+                            ВЮ
+                        </div>
+                        <div class="min-w-0">
+                            <h3 class="text-xl font-bold text-white break-words">Симаков Владислав Юрьевич</h3>
+                            <p class="text-[#c9a96e] text-sm font-medium">Частнопрактикующий юрист</p>
+                            <p class="text-xs text-gray-400 mt-0.5">Самозанятый | ИНН 253202682567</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-sm text-gray-300">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-[#c9a96e] mt-0.5 flex-shrink-0"></i>
+                            <span>Претензии, иски, возражения, жалобы, договоры, письменные консультации — всё в цифровом формате.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-[#c9a96e] mt-0.5 flex-shrink-0"></i>
+                            <span>Эксперт в документообороте: строгое соответствие нормам ГПК и АПК РФ.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-[#c9a96e] mt-0.5 flex-shrink-0"></i>
+                            <span>Вы получаете готовый документ, распечатываете, подписываете и подаёте самостоятельно.</span>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-black/60 rounded-2xl border border-[#c9a96e]/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                        <span class="text-gray-400 text-center sm:text-left">Работаю по всей России (удаленно)</span>
+                        <a href="https://kwork.ru/user/Semak_lawyer" target="_blank" rel="noopener noreferrer" class="text-[#c9a96e] font-semibold hover:underline flex items-center gap-1 flex-shrink-0">
+                            <i data-lucide="external-link" class="w-3.5 h-3.5 flex-shrink-0"></i> Профиль на Kwork
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Бегущая строка -->
+    <div class="bg-[#c9a96e] py-3 overflow-hidden shadow-md">
+        <div class="marquee flex whitespace-nowrap text-black font-bold text-sm tracking-wider">
+            <span class="mx-6">⚖ ИСКОВЫЕ ЗАЯВЛЕНИЯ</span>
+            <span class="mx-6">• ПРЕТЕНЗИИ К СТРАХОВЫМ И ВИНОВНИКАМ</span>
+            <span class="mx-6">• РАЗВОД И АЛИМЕНТЫ</span>
+            <span class="mx-6">• ТРУДОВЫЕ СПОРЫ И УВОЛЬНЕНИЕ</span>
+            <span class="mx-6">• ОТМЕНА СУДЕБНОГО ПРИКАЗА</span>
+            <span class="mx-6">• РАЗБЛОКИРОВКА СЧЁТА ПО 115-ФЗ</span>
+            <span class="mx-6">• ДОГОВОРЫ И СОГЛАШЕНИЯ</span>
+            <span class="mx-6">⚖ ИСКОВЫЕ ЗАЯВЛЕНИЯ</span>
+            <span class="mx-6">• ПРЕТЕНЗИИ К СТРАХОВЫМ И ВИНОВНИКАМ</span>
+            <span class="mx-6">• РАЗВОД И АЛИМЕНТЫ</span>
+            <span class="mx-6">• ТРУДОВЫЕ СПОРЫ И УВОЛЬНЕНИЕ</span>
+            <span class="mx-6">• ОТМЕНА СУДЕБНОГО ПРИКАЗА</span>
+            <span class="mx-6">• РАЗБЛОКИРОВКА СЧЁТА ПО 115-ФЗ</span>
+            <span class="mx-6">• ДОГОВОРЫ И СОГЛАШЕНИЯ</span>
+        </div>
+    </div>
+
+    <!-- Основные направления работы -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4 fade-in">
+                <span class="text-[#c9a96e] font-semibold text-sm uppercase tracking-[0.3em]">Направления</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">Основные направления работы</h2>
+                <div class="w-20 h-0.5 bg-[#c9a96e] mx-auto"></div>
+                <p class="text-gray-400 text-lg">Помогаю в разрешении споров любой сложности в цифровом формате</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+                <!-- ДТП -->
+                <div class="card-dark rounded-2xl p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/30 text-[#c9a96e] flex items-center justify-center text-xl">
+                        <i data-lucide="car" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">ДТП и Автоправо</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Претензии к страховым компаниям, иски к виновникам ДТП, жалобы на дорожные службы и ГИБДД.</p>
+                </div>
+                <!-- Семья -->
+                <div class="card-dark rounded-2xl p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/30 text-[#c9a96e] flex items-center justify-center text-xl">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Семейное право</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Заявления на развод, алименты, определение места жительства детей, установление отцовства.</p>
+                </div>
+                <!-- Наследство -->
+                <div class="card-dark rounded-2xl p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/30 text-[#c9a96e] flex items-center justify-center text-xl">
+                        <i data-lucide="home" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Наследство и Недвижимость</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Оспаривание завещания, восстановление срока принятия наследства, договоры купли-продажи, ипотека.</p>
+                </div>
+                <!-- Потребители -->
+                <div class="card-dark rounded-2xl p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/30 text-[#c9a96e] flex items-center justify-center text-xl">
+                        <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Защита прав потребителей</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Возврат товара, расторжение договора, взыскание за некачественный товар или услугу.</p>
+                </div>
+                <!-- Труд -->
+                <div class="card-dark rounded-2xl p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/30 text-[#c9a96e] flex items-center justify-center text-xl">
+                        <i data-lucide="briefcase" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Трудовые споры</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Жалобы на увольнение, восстановление на работе, споры при сокращении штата.</p>
+                </div>
+                <!-- Спец документы -->
+                <div class="card-dark rounded-2xl p-6 space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#c9a96e]/10 border border-[#c9a96e]/30 text-[#c9a96e] flex items-center justify-center text-xl">
+                        <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Срочные меры</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Отмена судебного приказа, разблокировка счёта по 115-ФЗ (жалобы в банк / Росфинмониторинг).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- Почему я -->
+    <section id="about" class="py-16 bg-neutral-900 border-y border-[#c9a96e]/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-center fade-in">
+            <div class="space-y-3 min-w-0">
+                <div class="w-14 h-14 bg-black border border-[#c9a96e]/30 rounded-full flex items-center justify-center mx-auto text-[#c9a96e] text-xl font-bold">
+                    <i data-lucide="gavel" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-bold text-white">Эксперт в документообороте</h4>
+                <p class="text-xs sm:text-sm text-gray-400">Точность и полное соответствие нормам ГПК и АПК РФ.</p>
+            </div>
+            <div class="space-y-3 min-w-0">
+                <div class="w-14 h-14 bg-black border border-[#c9a96e]/30 rounded-full flex items-center justify-center mx-auto text-[#c9a96e] text-xl font-bold">
+                    <i data-lucide="scale" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-bold text-white">Честная оценка шансов</h4>
+                <p class="text-xs sm:text-sm text-gray-400">Без «волшебных» обещаний и скрытых условий.</p>
+            </div>
+            <div class="space-y-3 min-w-0">
+                <div class="w-14 h-14 bg-black border border-[#c9a96e]/30 rounded-full flex items-center justify-center mx-auto text-[#c9a96e] text-xl font-bold">
+                    <i data-lucide="lock" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-bold text-white">Полная конфиденциальность</h4>
+                <p class="text-xs sm:text-sm text-gray-400">Безопасное общение только онлайн и защита данных.</p>
+            </div>
+            <div class="space-y-3 min-w-0">
+                <div class="w-14 h-14 bg-black border border-[#c9a96e]/30 rounded-full flex items-center justify-center mx-auto text-[#c9a96e] text-xl font-bold">
+                    <i data-lucide="clock" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-bold text-white">Готово за 1–3 дня</h4>
+                <p class="text-xs sm:text-sm text-gray-400">Оперативная подготовка документов любой сложности.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Прайс-лист -->
+    <section id="pricing" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4 fade-in">
+                <span class="text-[#c9a96e] font-semibold text-sm uppercase tracking-[0.3em]">Прайс-лист</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">Прозрачные цены</h2>
+                <div class="w-20 h-0.5 bg-[#c9a96e] mx-auto"></div>
+                <p class="text-gray-400 text-lg">Цены от 1 000 ₽. Точная стоимость определяется после анализа вашей ситуации.</p>
+            </div>
+
+            <!-- Строка поиска по прайсу -->
+            <div class="max-w-md mx-auto fade-in">
+                <div class="relative">
+                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"></i>
+                    <input type="text" id="pricingSearch" placeholder="Поиск по направлениям (например: Семейное, Суд)..."
+                        class="w-full pl-12 pr-4 py-3.5 rounded-xl bg-black/60 border border-[#c9a96e]/30 text-white placeholder-gray-500 focus:border-[#c9a96e] focus:ring-2 focus:ring-[#c9a96e]/20 outline-none transition">
+                </div>
+            </div>
+
+            <!-- Сетка категорий прайса -->
+            <div id="pricingGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Динамически заполняется через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Как мы работаем -->
+    <section id="process" class="py-24 bg-neutral-950 border-t border-[#c9a96e]/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4 fade-in">
+                <span class="text-[#c9a96e] font-semibold text-sm uppercase tracking-[0.3em]">Процесс</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">Как мы работаем</h2>
+                <div class="w-20 h-0.5 bg-[#c9a96e] mx-auto"></div>
+                <p class="text-gray-400 text-lg">Простой и прозрачный процесс дистанционного оказания юридических услуг</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 fade-in">
+                <div class="card-dark rounded-2xl p-6 relative space-y-3 min-w-0">
+                    <span class="absolute top-4 right-4 stat-number text-4xl font-bold text-[#c9a96e]/20">01</span>
+                    <h3 class="font-bold text-lg text-white pr-10">Заявка</h3>
+                    <p class="text-sm text-gray-400">Вы оставляете заявку на сайте или описываете вашу правовую проблему.</p>
+                </div>
+                <div class="card-dark rounded-2xl p-6 relative space-y-3 min-w-0">
+                    <span class="absolute top-4 right-4 stat-number text-4xl font-bold text-[#c9a96e]/20">02</span>
+                    <h3 class="font-bold text-lg text-white pr-10">Анализ</h3>
+                    <p class="text-sm text-gray-400">Я оцениваю перспективы дела, согласовываем стоимость, заключаем договор.</p>
+                </div>
+                <div class="card-dark rounded-2xl p-6 relative space-y-3 min-w-0">
+                    <span class="absolute top-4 right-4 stat-number text-4xl font-bold text-[#c9a96e]/20">03</span>
+                    <h3 class="font-bold text-lg text-white pr-10">Подготовка</h3>
+                    <p class="text-sm text-gray-400">В течение 1–3 дней составляю процессуальный документ с учетом норм закона.</p>
+                </div>
+                <div class="card-dark rounded-2xl p-6 relative space-y-3 min-w-0">
+                    <span class="absolute top-4 right-4 stat-number text-4xl font-bold text-[#c9a96e]/20">04</span>
+                    <h3 class="font-bold text-lg text-white pr-10">Результат</h3>
+                    <p class="text-sm text-gray-400">Вы получаете документ на почту, распечатываете, подписываете и подаете сами.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция контактов и формы лидогенерации -->
+    <section id="contact" class="py-24 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="card-dark rounded-3xl p-6 sm:p-8 md:p-12 glow-gold relative overflow-hidden fade-in">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#c9a96e]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 relative z-10">
+                    <div class="space-y-6 min-w-0">
+                        <span class="text-[#c9a96e] font-semibold text-sm uppercase tracking-[0.3em]">Контакты</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white">Связаться со мной</h2>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Заполните форму, и я свяжусь с вами в ближайшее время. Все сообщения с контактами отправляются на мою рабочую электронную почту <span class="text-[#c9a96e] font-semibold break-all">Arrusi@bk.ru</span>.
+                        </p>
+                        <div class="space-y-4 text-sm text-gray-300 pt-4 border-t border-[#c9a96e]/20">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <i data-lucide="phone" class="w-5 h-5 text-[#c9a96e] flex-shrink-0"></i>
+                                <a href="tel:+79652413038" class="hover:text-[#c9a96e] transition font-semibold truncate">8 (965) 241-30-38</a>
+                            </div>
+                            <div class="flex items-center gap-3 min-w-0">
+                                <i data-lucide="mail" class="w-5 h-5 text-[#c9a96e] flex-shrink-0"></i>
+                                <a href="mailto:Arrusi@bk.ru" class="hover:text-[#c9a96e] transition font-semibold truncate">Arrusi@bk.ru</a>
+                            </div>
+                            <div class="flex items-center gap-3 min-w-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-[#c9a96e] flex-shrink-0"></i>
+                                <span class="truncate">г. Владивосток (удаленно по всей РФ)</span>
+                            </div>
+                            <div class="flex items-center gap-3 pt-2 min-w-0">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-[#c9a96e] flex-shrink-0"></i>
+                                <span class="text-xs text-gray-400">Симаков В.Ю. | Самозанятый | ИНН 253202682567</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Форма заявки с обязательными юридическими чекбоксами -->
+                    <form id="leadForm" class="space-y-4 bg-black/60 p-5 sm:p-6 rounded-2xl border border-[#c9a96e]/20 min-w-0">
+                        <div>
+                            <label for="clientName" class="block text-xs font-semibold text-gray-300 uppercase mb-1">Ваше имя *</label>
+                            <input type="text" id="clientName" name="Имя" required autocomplete="name" placeholder="Иван Иванович" class="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a96e] text-sm">
+                        </div>
+                        <div>
+                            <label for="clientContact" class="block text-xs font-semibold text-gray-300 uppercase mb-1">Телефон или Email *</label>
+                            <input type="text" id="clientContact" name="Контакт" required placeholder="+7 (999) 000-00-00 или email" class="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a96e] text-sm">
+                        </div>
+                        <div>
+                            <label for="clientService" class="block text-xs font-semibold text-gray-300 uppercase mb-1">Тип услуги</label>
+                            <select id="clientService" name="Тип услуги" class="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#c9a96e] text-sm">
+                                <option value="">Выберите, если знаете</option>
+                                <option>Исковое заявление</option>
+                                <option>Претензия</option>
+                                <option>Возражение / отзыв на иск</option>
+                                <option>Жалоба в госорган</option>
+                                <option>Договор</option>
+                                <option>Отмена судебного приказа</option>
+                                <option>Разблокировка счёта (115-ФЗ)</option>
+                                <option>Письменная консультация</option>
+                                <option>Другое / не знаю, нужна консультация</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="clientMsg" class="block text-xs font-semibold text-gray-300 uppercase mb-1">Описание вашей ситуации *</label>
+                            <textarea id="clientMsg" name="Сообщение" rows="3" required placeholder="Какой документ вам необходим..." class="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a96e] text-sm resize-none"></textarea>
+                        </div>
+
+                        <!-- Тема письма для Formspree -->
+                        <input type="hidden" name="_subject" value="Новая заявка с сайта — Симаков В.Ю.">
+                        <!-- Honeypot-поле против спам-ботов: скрыто от людей, боты его заполняют -->
+                        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+                        <!-- Чекбоксы безопасности -->
+                        <div class="space-y-2 pt-1 text-xs text-gray-400">
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" id="consentPd" name="Согласие на обработку ПДн" value="Согласие получено" required class="mt-0.5 rounded bg-neutral-900 border-neutral-700 flex-shrink-0">
+                                <span>Я даю согласие на <button type="button" onclick="openModal('pdModal')" class="text-[#c9a96e] underline hover:text-[#e8d5a3] transition">обработку персональных данных</button> в соответствии с 152-ФЗ и подтверждаю, что мне исполнилось 18 лет.</span>
+                            </label>
+                            <label class="flex items-start gap-2 cursor-pointer">
+                                <input type="checkbox" id="consentPolicy" name="Согласие с политикой конфиденциальности" value="Согласие получено" required class="mt-0.5 rounded bg-neutral-900 border-neutral-700 flex-shrink-0">
+                                <span>Я ознакомлен(а) с <button type="button" onclick="openModal('policyModal')" class="text-[#c9a96e] underline hover:text-[#e8d5a3] transition">политикой конфиденциальности</button> сайта.</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="w-full btn-gold py-3.5 px-4 rounded-xl transition text-sm uppercase tracking-wide font-bold">
+                            Отправить заявку
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно успешной отправки -->
+    <div id="successModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="card-dark rounded-3xl max-w-md w-full p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-green-500/10 border border-green-500/30 text-green-400 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i data-lucide="check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">Заявка успешно отправлена!</h3>
+            <p class="text-gray-400 text-sm">
+                Спасибо за обращение! Данные и ваше сообщение направлены на электронную почту Владислава (<span class="text-white font-semibold break-all">Arrusi@bk.ru</span>). Вскоре с вами свяжутся.
+            </p>
+            <button onclick="closeModal('successModal')" class="w-full btn-gold py-3 rounded-xl font-semibold">
+                Понятно
+            </button>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Согласие на обработку персональных данных -->
+    <div id="pdModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="card-dark rounded-3xl max-w-2xl w-full p-6 max-h-[85vh] overflow-y-auto space-y-4">
+            <div class="flex justify-between items-center border-b border-[#c9a96e]/20 pb-3 gap-3">
+                <h3 class="text-lg font-bold text-white">Согласие на обработку персональных данных</h3>
+                <button onclick="closeModal('pdModal')" class="text-gray-400 hover:text-white flex-shrink-0" aria-label="Закрыть окно"><i data-lucide="x" class="w-6 h-6"></i></button>
+            </div>
+            <div class="text-sm text-gray-300 space-y-3 leading-relaxed">
+                <p>Настоящее согласие предоставляется субъектом персональных данных (далее — «Пользователь») в адрес Симакова Владислава Юрьевича, самозанятого — плательщика налога на профессиональный доход в соответствии с Федеральным законом от 27.11.2018 № 422-ФЗ, ИНН 253202682567, г. Владивосток (далее — «Оператор»), в соответствии со ст. 9 Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
+
+                <p class="font-semibold text-white">1. Состав персональных данных</p>
+                <p>Оператор обрабатывает следующие данные, предоставленные Пользователем через форму на сайте: фамилия, имя, отчество; номер телефона и/или адрес электронной почты; содержание обращения (текст сообщения).</p>
+
+                <p class="font-semibold text-white">2. Цели обработки</p>
+                <p>Персональные данные обрабатываются исключительно в целях: связи с Пользователем для обсуждения поставленной задачи; подготовки юридических документов и оказания письменных консультаций; заключения и исполнения договора возмездного оказания услуг; направления ответа на обращение.</p>
+
+                <p class="font-semibold text-white">3. Перечень действий с данными</p>
+                <p>Обработка включает сбор, запись, систематизацию, накопление, хранение, уточнение, использование, а также блокирование и удаление персональных данных — как с использованием средств автоматизации, так и без таковых.</p>
+
+                <p class="font-semibold text-white">4. Передача третьим лицам</p>
+                <p>Оператор не передаёт персональные данные третьим лицам, за исключением случаев, прямо предусмотренных законодательством Российской Федерации (например, по законному запросу государственных органов). Трансграничная передача данных не осуществляется.</p>
+
+                <p class="font-semibold text-white">5. Срок действия и отзыв согласия</p>
+                <p>Согласие действует с момента его предоставления и до момента отзыва, но не более срока, необходимого для достижения целей обработки. Согласие может быть отозвано в любой момент путём направления письменного уведомления на адрес электронной почты Arrusi@bk.ru. Отзыв согласия может сделать невозможным дальнейшее оказание услуг.</p>
+
+                <p class="font-semibold text-white">6. Права Пользователя</p>
+                <p>Пользователь вправе получать информацию, касающуюся обработки его персональных данных, требовать уточнения, блокирования или уничтожения данных в случае их неполноты, устаревания или незаконного получения — в порядке, предусмотренном ст. 14 152-ФЗ.</p>
+
+                <p>Отправляя форму на сайте, Пользователь подтверждает, что ознакомлен с условиями настоящего согласия, предоставляет его добровольно, своей волей и в своём интересе, а также подтверждает, что достиг возраста 18 лет.</p>
+            </div>
+            <button onclick="closeModal('pdModal')" class="w-full btn-gold py-2.5 rounded-xl font-semibold">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Политика конфиденциальности -->
+    <div id="policyModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="card-dark rounded-3xl max-w-2xl w-full p-6 max-h-[85vh] overflow-y-auto space-y-4">
+            <div class="flex justify-between items-center border-b border-[#c9a96e]/20 pb-3 gap-3">
+                <h3 class="text-lg font-bold text-white">Политика конфиденциальности</h3>
+                <button onclick="closeModal('policyModal')" class="text-gray-400 hover:text-white flex-shrink-0" aria-label="Закрыть окно"><i data-lucide="x" class="w-6 h-6"></i></button>
+            </div>
+            <div class="text-sm text-gray-300 space-y-3 leading-relaxed">
+                <p class="font-semibold text-white">1. Общие положения</p>
+                <p>Настоящая Политика определяет порядок обработки и защиты персональных данных Пользователей сайта самозанятым Симаковым Владиславом Юрьевичем (ИНН 253202682567, г. Владивосток), выступающим оператором персональных данных в значении Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
+
+                <p class="font-semibold text-white">2. Какие данные собираются</p>
+                <p>Сайт собирает только те данные, которые Пользователь предоставляет добровольно через форму обратной связи: имя, контактный телефон и/или адрес электронной почты, содержание обращения. Сайт не запрашивает специальные категории персональных данных (сведения о здоровье, национальности, религиозных убеждениях и т.п.).</p>
+
+                <p class="font-semibold text-white">3. Правовые основания обработки</p>
+                <p>Обработка осуществляется на основании согласия Пользователя (ст. 6 152-ФЗ), а также — после заключения договора — в целях его исполнения.</p>
+
+                <p class="font-semibold text-white">4. Использование данных</p>
+                <p>Полученные данные используются исключительно для связи с Пользователем, подготовки запрошенных юридических документов, оказания консультаций и исполнения договора оказания услуг. Данные не используются для рассылки рекламы без отдельного согласия.</p>
+
+                <p class="font-semibold text-white">5. Хранение и защита данных</p>
+                <p>Данные хранятся в электронном виде на серверах сервиса приёма заявок и в почтовом ящике Оператора. Оператор принимает организационные меры для защиты данных от неправомерного доступа, копирования, распространения. Все сведения о вашем деле защищены профессиональной тайной и не передаются третьим лицам, кроме случаев, прямо предусмотренных законом.</p>
+
+                <p class="font-semibold text-white">6. Файлы cookie</p>
+                <p>Сайт использует технические файлы cookie для корректной работы интерфейса (например, для запоминания факта согласия с настоящей Политикой). Эти файлы не содержат персональных данных и не используются для отслеживания Пользователя за пределами сайта. Вы можете отключить cookie в настройках браузера — это может ограничить работу отдельных функций сайта.</p>
+
+                <p class="font-semibold text-white">7. Права субъекта персональных данных</p>
+                <p>Пользователь вправе в любой момент запросить сведения об обработке его данных, потребовать их уточнения или удаления, а также отозвать согласие на обработку, направив обращение на адрес Arrusi@bk.ru.</p>
+
+                <p class="font-semibold text-white">8. Изменение политики</p>
+                <p>Оператор вправе вносить изменения в настоящую Политику. Действующая редакция всегда доступна на данной странице сайта.</p>
+
+                <p class="font-semibold text-white">9. Контакты</p>
+                <p>По всем вопросам обработки персональных данных: <a href="mailto:Arrusi@bk.ru" class="text-[#c9a96e] underline">Arrusi@bk.ru</a>, телефон 8 (965) 241-30-38.</p>
+            </div>
+            <button onclick="closeModal('policyModal')" class="w-full btn-gold py-2.5 rounded-xl font-semibold">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Баннер Cookie внизу -->
+    <div id="cookieBanner" class="hidden fixed bottom-0 left-0 right-0 z-40 bg-black/95 border-t border-[#c9a96e]/30 text-gray-300 p-4 shadow-2xl backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+        <div class="max-w-4xl flex items-start sm:items-center gap-3 min-w-0">
+            <i data-lucide="cookie" class="w-6 h-6 text-[#c9a96e] flex-shrink-0"></i>
+            <span>Этот сайт использует файлы cookie для корректной работы. Продолжая использовать сайт, вы соглашаетесь с <button onclick="openModal('policyModal')" class="text-[#c9a96e] underline">политикой конфиденциальности</button>.</span>
+        </div>
+        <button id="acceptCookies" class="btn-gold w-full sm:w-auto px-6 py-2.5 rounded-lg text-xs uppercase font-bold whitespace-nowrap flex-shrink-0">
+            Принять
+        </button>
+    </div>
+
+    <!-- Кнопка "наверх" -->
+    <button id="scrollTopBtn" class="fixed bottom-24 right-4 sm:right-6 z-30 w-11 h-11 rounded-full btn-gold flex items-center justify-center shadow-lg" aria-label="Наверх">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- Футер -->
+    <footer class="bg-black border-t border-[#c9a96e]/20 py-12 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-center md:text-left">
+            <div class="space-y-2 min-w-0">
+                <div class="text-white font-bold text-base">Симаков Владислав Юрьевич</div>
+                <div class="text-gray-400">Самозанятый | ИНН 253202682567</div>
+                <div class="text-xs text-gray-500">г. Владивосток | Удаленное составление юридических документов по всей России</div>
+            </div>
+            <div class="flex flex-wrap justify-center md:justify-end items-center gap-x-6 gap-y-2 min-w-0">
+                <a href="mailto:Arrusi@bk.ru" class="hover:text-[#c9a96e] transition inline-flex items-center gap-1"><i data-lucide="mail" class="w-4 h-4 text-[#c9a96e] flex-shrink-0"></i> Arrusi@bk.ru</a>
+                <a href="tel:+79652413038" class="hover:text-[#c9a96e] transition inline-flex items-center gap-1"><i data-lucide="phone" class="w-4 h-4 text-[#c9a96e] flex-shrink-0"></i> 8 (965) 241-30-38</a>
+                <a href="https://kwork.ru/user/Semak_lawyer" target="_blank" rel="noopener noreferrer" class="hover:text-[#c9a96e] transition inline-flex items-center gap-1"><i data-lucide="external-link" class="w-4 h-4 text-[#c9a96e] flex-shrink-0"></i> Kwork</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-6 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-gray-500">
+            <button onclick="openModal('pdModal')" class="hover:text-[#c9a96e] transition underline">Согласие на обработку ПДн</button>
+            <button onclick="openModal('policyModal')" class="hover:text-[#c9a96e] transition underline">Политика конфиденциальности</button>
+        </div>
+        <div class="max-w-7xl mx-auto mt-6 pt-6 border-t border-neutral-900 text-center text-xs text-gray-600">
+            © 2026 Все права защищены. Юридические услуги онлайн.
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script>
+        lucide.createIcons();
+
+        // Полная база прайс-листа
+        const pricingData = [
+            { category: 'Авторские и смежные права', items: [{ name: 'Составление документа', price: '2 000 ₽' }] },
+            { category: 'Административное право', items: [{ name: 'Составление документа', price: '1 500 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Арбитраж', items: [{ name: 'Составление документа', price: '3 500 ₽' }] },
+            { category: 'Военное право', items: [{ name: 'Составление документа', price: '4 500 ₽' }, { name: 'Консультация', price: '2 000 ₽' }] },
+            { category: 'Гражданское право', items: [{ name: 'Составление документа', price: '1 500 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Договорное право', items: [{ name: 'Составление документа', price: '3 500 ₽' }] },
+            { category: 'Жилищное право', items: [{ name: 'Составление документа', price: '1 800 ₽' }] },
+            { category: 'ЖКХ', items: [{ name: 'Составление документа', price: '1 800 ₽' }] },
+            { category: 'Защита прав потребителей', items: [{ name: 'Составление документа', price: '1 500 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Земельное право', items: [{ name: 'Составление документа', price: '2 000 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Интернет и право', items: [{ name: 'Составление документа', price: '2 000 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Ипотека', items: [{ name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Исполнительное производство', items: [{ name: 'Составление документа', price: '1 300 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Конституционное право', items: [{ name: 'Составление документа', price: '2 000 ₽' }] },
+            { category: 'Корпоративное право', items: [{ name: 'Составление', price: '3 000 ₽' }] },
+            { category: 'Медицинское право', items: [{ name: 'Составление документа', price: '2 000 ₽' }] },
+            { category: 'Миграционное право', items: [{ name: 'Составление документа', price: '1 500 ₽' }] },
+            { category: 'Налоговое право', items: [{ name: 'Составление документа', price: '3 500 ₽' }] },
+            { category: 'Наследственное право', items: [{ name: 'Составление документа', price: '3 000 ₽' }] },
+            { category: 'Образование', items: [{ name: 'Составление документа', price: '2 000 ₽' }] },
+            { category: 'Общие вопросы', items: [{ name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Семейное право', items: [{ name: 'Составление документа', price: '2 000 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Судопроизводство', items: [{ name: 'Составление документа', price: '5 000 ₽' }] },
+            { category: 'Таможенное право', items: [{ name: 'Составление документа', price: '3 000 ₽' }] },
+            { category: 'Трудовое право', items: [{ name: 'Составление документа', price: '1 500 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
+            { category: 'Уголовное право', items: [{ name: 'Составление документа', price: '2 000 ₽' }, { name: 'Консультация', price: '800 ₽' }] }
+        ];
+
+        function renderPricing(filter = '') {
+            const grid = document.getElementById('pricingGrid');
+            const filtered = pricingData.filter(p =>
+                p.category.toLowerCase().includes(filter.toLowerCase()) ||
+                p.items.some(i => i.name.toLowerCase().includes(filter.toLowerCase()))
+            );
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-12">Ничего не найдено по вашему запросу</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => `
+                <div class="card-dark rounded-2xl p-6 flex flex-col justify-between min-w-0">
+                    <div class="min-w-0">
+                        <h3 class="text-lg font-bold text-white mb-4 pb-3 border-b border-[#c9a96e]/20 break-words">${item.category}</h3>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            ${item.items.map(i => `
+                                <li class="flex justify-between items-center gap-2">
+                                    <span class="min-w-0 break-words">${i.name}</span>
+                                    <span class="font-bold text-[#c9a96e] whitespace-nowrap flex-shrink-0">${i.price}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    <a href="#contact" class="mt-6 block text-center border border-[#c9a96e]/30 hover:bg-[#c9a96e] hover:text-black text-[#c9a96e] py-2.5 rounded-xl font-medium transition text-sm">
+                        Заказать
+                    </a>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        document.getElementById('pricingSearch').addEventListener('input', (e) => {
+            renderPricing(e.target.value);
+        });
+
+        // Мобильное меню
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            menuBtn.setAttribute('aria-expanded', String(!isHidden));
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Модальные окна (без опоры на глобальный event — безопасно для всех браузеров)
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        // Закрытие по клику на затемнённый фон
+        ['pdModal', 'policyModal', 'successModal'].forEach(id => {
+            document.getElementById(id).addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) closeModal(id);
+            });
+        });
+        // Закрытие по Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                ['pdModal', 'policyModal', 'successModal'].forEach(id => closeModal(id));
+            }
+        });
+
+        // Тосты (всплывающие уведомления)
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white px-5 py-4 rounded-xl shadow-xl flex items-center gap-3 w-full sm:min-w-[300px] sm:w-auto`;
+            toast.innerHTML = `
+                <i data-lucide="${type === 'success' ? 'check-circle' : 'x-circle'}" class="w-5 h-5 flex-shrink-0"></i>
+                <span class="font-medium text-sm">${message}</span>
+            `;
+            container.appendChild(toast);
+            lucide.createIcons();
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        // ============================================================
+        // ОТПРАВКА ФОРМЫ НА ПОЧТУ ЧЕРЕЗ FORMSPREE
+        // ============================================================
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjgnpwyr';
+
+        const leadForm = document.getElementById('leadForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        leadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+
+            const formData = new FormData(leadForm);
+
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    document.getElementById('successModal').classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                    lucide.createIcons();
+                    leadForm.reset();
+                } else {
+                    showToast('Не удалось отправить заявку. Попробуйте ещё раз или позвоните напрямую.', 'error');
+                }
+            } catch (error) {
+                showToast('Ошибка сети. Проверьте соединение и попробуйте снова.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить заявку';
+            }
+        });
+
+        // Cookies баннер
+        const cookieBanner = document.getElementById('cookieBanner');
+        const acceptCookies = document.getElementById('acceptCookies');
+        if (!localStorage.getItem('cookiesAccepted')) {
+            cookieBanner.classList.remove('hidden');
+        }
+        acceptCookies.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.classList.add('hidden');
+        });
+
+        // Плавное появление блоков при прокрутке
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+        // Подсветка активного пункта меню + кнопка "наверх"
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+            });
+
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        renderPricing();
+    </script>
+</body>
+</html>
