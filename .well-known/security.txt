@@ -1,0 +1,4 @@
+Contact: mailto:Arrusi@bk.ru
+Expires: 2027-07-26T00:00:00.000Z
+Preferred-Languages: ru, en
+Canonical: https://simaklawyer.github.io/.well-known/security.txt
