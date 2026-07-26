@@ -10,6 +10,42 @@ body { background: #0a0a0a; color: #fff; }
     --gold: #c9a96e;
     --gold-light: #e8d5a3;
     --gold-dark: #a88a4e;
+
+    /* vanilla-cookieconsent — тёмная тема под сайт */
+    --cc-bg: #111111;
+    --cc-primary-color: #e5e5e5;
+    --cc-secondary-color: #a3a3a3;
+    --cc-btn-primary-bg: #c9a96e;
+    --cc-btn-primary-color: #000;
+    --cc-btn-primary-hover-bg: #e8d5a3;
+    --cc-btn-primary-hover-color: #000;
+    --cc-btn-secondary-bg: #1a1a1a;
+    --cc-btn-secondary-color: #e5e5e5;
+    --cc-btn-secondary-hover-bg: #262626;
+    --cc-btn-secondary-hover-color: #fff;
+    --cc-separator-border-color: rgba(201, 169, 110, 0.2);
+    --cc-toggle-on-bg: #c9a96e;
+    --cc-toggle-off-bg: #404040;
+    --cc-toggle-on-knob-bg: #000;
+    --cc-toggle-off-knob-bg: #e5e5e5;
+    --cc-toggle-enabled-icon-color: #000;
+    --cc-toggle-disabled-icon-color: #a3a3a3;
+    --cc-toggle-readonly-bg: #333;
+    --cc-toggle-readonly-knob-bg: #777;
+    --cc-toggle-readonly-knob-icon-color: #aaa;
+    --cc-section-category-border: rgba(201, 169, 110, 0.15);
+    --cc-cookie-category-block-bg: #1a1a1a;
+    --cc-cookie-category-block-border: rgba(201, 169, 110, 0.15);
+    --cc-cookie-category-block-hover-bg: #222;
+    --cc-cookie-category-block-hover-border: rgba(201, 169, 110, 0.3);
+    --cc-cookie-category-expanded-block-bg: transparent;
+    --cc-cookie-category-expanded-block-hover-bg: #161616;
+    --cc-overlay-bg: rgba(0, 0, 0, 0.75);
+    --cc-webkit-scrollbar-bg: #1a1a1a;
+    --cc-webkit-scrollbar-hover-bg: #c9a96e;
+    --cc-footer-bg: #0a0a0a;
+    --cc-footer-color: #a3a3a3;
+    --cc-footer-border-color: rgba(201, 169, 110, 0.2);
 }
 
 .text-gold { color: var(--gold); }
@@ -100,7 +136,6 @@ body { background: #0a0a0a; color: #fff; }
     100% { transform: translateX(-50%); }
 }
 
-/* Плавное появление блоков при прокрутке */
 .fade-in {
     opacity: 0;
     transform: translateY(24px);
@@ -111,7 +146,6 @@ body { background: #0a0a0a; color: #fff; }
     transform: translateY(0);
 }
 
-/* Всплывающие уведомления (тосты) */
 .toast {
     animation: toastIn 0.3s ease, toastOut 0.3s ease 3.7s forwards;
 }
@@ -123,7 +157,6 @@ body { background: #0a0a0a; color: #fff; }
     to { transform: translateX(120%); opacity: 0; }
 }
 
-/* Кнопка "наверх" */
 #scrollTopBtn {
     opacity: 0;
     pointer-events: none;
@@ -139,11 +172,9 @@ input[type="checkbox"] { accent-color: var(--gold); }
 ::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
 
-/* Явный фокус для клавиатурной навигации */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 2px;
 }
 
-/* Защита от переполнения на очень узких экранах */
 img, svg { max-width: 100%; }

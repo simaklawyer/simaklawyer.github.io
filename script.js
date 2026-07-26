@@ -2,9 +2,10 @@
    Симаков В.Ю. — скрипты сайта
    ============================================================ */
 
-lucide.createIcons();
+if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+}
 
-// Конкретный прайс-лист (удобный для поиска и заказа)
 const pricingData = [
     {
         category: 'Судебные приказы и срочные меры',
@@ -117,6 +118,7 @@ const pricingData = [
 
 function renderPricing(filter = '') {
     const grid = document.getElementById('pricingGrid');
+    if (!grid) return;
     const q = filter.toLowerCase().trim();
     const filtered = pricingData.filter(p =>
         p.category.toLowerCase().includes(q) ||
@@ -141,43 +143,49 @@ function renderPricing(filter = '') {
                     `).join('')}
                 </ul>
             </div>
-            <a href="#contact" class="mt-6 block text-center border border-[#c9a96e]/30 hover:bg-[#c9a96e] hover:text-black text-[#c9a96e] py-2.5 rounded-xl font-medium transition text-sm">
-                Заказать
-            </a>
+            <a href="#contact" class="mt-6 block text-center border border-[#c9a96e]/30 hover:bg-[#c9a96e] hover:text-black text-[#c9a96e] py-2.5 rounded-xl font-medium transition text-sm">Заказать</a>
         </div>
     `).join('');
 
-    lucide.createIcons();
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
-document.getElementById('pricingSearch').addEventListener('input', (e) => {
-    renderPricing(e.target.value);
-});
+const pricingSearch = document.getElementById('pricingSearch');
+if (pricingSearch) {
+    pricingSearch.addEventListener('input', (e) => renderPricing(e.target.value));
+}
 
-// Мобильное меню
 const menuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
-menuBtn.addEventListener('click', () => {
-    const isHidden = mobileMenu.classList.toggle('hidden');
-    menuBtn.setAttribute('aria-expanded', String(!isHidden));
-});
-document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuBtn.setAttribute('aria-expanded', 'false');
+if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', String(!isHidden));
     });
-});
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
 
-// Модальные окна
 function openModal(id) {
-    document.getElementById(id).classList.remove('hidden');
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    lucide.createIcons();
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 function closeModal(id) {
-    document.getElementById(id).classList.add('hidden');
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('hidden');
     document.body.style.overflow = '';
 }
+window.openModal = openModal;
+window.closeModal = closeModal;
+
 ['pdModal', 'policyModal', 'successModal', 'payModal'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -194,9 +202,9 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Тосты
 function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
+    if (!container) return;
     const toast = document.createElement('div');
     toast.className = `toast ${type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white px-5 py-4 rounded-xl shadow-xl flex items-center gap-3 w-full sm:min-w-[300px] sm:w-auto`;
     toast.innerHTML = `
@@ -204,54 +212,43 @@ function showToast(message, type = 'success') {
         <span class="font-medium text-sm">${message}</span>
     `;
     container.appendChild(toast);
-    lucide.createIcons();
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     setTimeout(() => toast.remove(), 4000);
 }
 
-// Formspree
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjgnpwyr';
 const leadForm = document.getElementById('leadForm');
 const submitBtn = document.getElementById('submitBtn');
 
-leadForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Отправка...';
-    const formData = new FormData(leadForm);
-    try {
-        const response = await fetch(FORMSPREE_ENDPOINT, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-            document.getElementById('successModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            lucide.createIcons();
-            leadForm.reset();
-        } else {
-            showToast('Не удалось отправить заявку. Попробуйте ещё раз или позвоните напрямую.', 'error');
+if (leadForm && submitBtn) {
+    leadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Отправка...';
+        const formData = new FormData(leadForm);
+        try {
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                document.getElementById('successModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+                leadForm.reset();
+            } else {
+                showToast('Не удалось отправить заявку. Попробуйте ещё раз или позвоните напрямую.', 'error');
+            }
+        } catch (error) {
+            showToast('Ошибка сети. Проверьте соединение и попробуйте снова.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Отправить заявку';
         }
-    } catch (error) {
-        showToast('Ошибка сети. Проверьте соединение и попробуйте снова.', 'error');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Отправить заявку';
-    }
-});
-
-// Cookies
-const cookieBanner = document.getElementById('cookieBanner');
-const acceptCookies = document.getElementById('acceptCookies');
-if (!localStorage.getItem('cookiesAccepted')) {
-    cookieBanner.classList.remove('hidden');
+    });
 }
-acceptCookies.addEventListener('click', () => {
-    localStorage.setItem('cookiesAccepted', 'true');
-    cookieBanner.classList.add('hidden');
-});
 
-// Fade-in
 const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -262,7 +259,6 @@ const fadeObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
-// Active nav + scroll top
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 const scrollTopBtn = document.getElementById('scrollTopBtn');
@@ -277,16 +273,17 @@ window.addEventListener('scroll', () => {
     navLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
-    scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+    if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
 }, { passive: true });
 
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
 renderPricing();
 
-// Service Worker — ускоряет повторные загрузки
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch(() => {});
