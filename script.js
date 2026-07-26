@@ -4,45 +4,127 @@
 
 lucide.createIcons();
 
-// Полная база прайс-листа
+// Конкретный прайс-лист (удобный для поиска и заказа)
 const pricingData = [
-    { category: 'Авторские и смежные права', items: [{ name: 'Составление документа', price: '2 000 ₽' }] },
-    { category: 'Административное право', items: [{ name: 'Составление документа', price: '1 500 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Арбитраж', items: [{ name: 'Составление документа', price: '3 500 ₽' }] },
-    { category: 'Военное право', items: [{ name: 'Составление документа', price: '4 500 ₽' }, { name: 'Консультация', price: '2 000 ₽' }] },
-    { category: 'Гражданское право', items: [{ name: 'Составление документа', price: '1 500 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Договорное право', items: [{ name: 'Составление документа', price: '3 500 ₽' }] },
-    { category: 'Жилищное право', items: [{ name: 'Составление документа', price: '1 800 ₽' }] },
-    { category: 'ЖКХ', items: [{ name: 'Составление документа', price: '1 800 ₽' }] },
-    { category: 'Защита прав потребителей', items: [{ name: 'Составление документа', price: '1 500 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Земельное право', items: [{ name: 'Составление документа', price: '2 000 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Интернет и право', items: [{ name: 'Составление документа', price: '2 000 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Ипотека', items: [{ name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Исполнительное производство', items: [{ name: 'Составление документа', price: '1 300 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Конституционное право', items: [{ name: 'Составление документа', price: '2 000 ₽' }] },
-    { category: 'Корпоративное право', items: [{ name: 'Составление', price: '3 000 ₽' }] },
-    { category: 'Медицинское право', items: [{ name: 'Составление документа', price: '2 000 ₽' }] },
-    { category: 'Миграционное право', items: [{ name: 'Составление документа', price: '1 500 ₽' }] },
-    { category: 'Налоговое право', items: [{ name: 'Составление документа', price: '3 500 ₽' }] },
-    { category: 'Наследственное право', items: [{ name: 'Составление документа', price: '3 000 ₽' }] },
-    { category: 'Образование', items: [{ name: 'Составление документа', price: '2 000 ₽' }] },
-    { category: 'Общие вопросы', items: [{ name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Семейное право', items: [{ name: 'Составление документа', price: '2 000 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Судопроизводство', items: [{ name: 'Составление документа', price: '5 000 ₽' }] },
-    { category: 'Таможенное право', items: [{ name: 'Составление документа', price: '3 000 ₽' }] },
-    { category: 'Трудовое право', items: [{ name: 'Составление документа', price: '1 500 ₽' }, { name: 'Консультация', price: '800 ₽' }] },
-    { category: 'Уголовное право', items: [{ name: 'Составление документа', price: '2 000 ₽' }, { name: 'Консультация', price: '800 ₽' }] }
+    {
+        category: 'Судебные приказы и срочные меры',
+        items: [
+            { name: 'Возражение на судебный приказ', price: '1 500 ₽' },
+            { name: 'Заявление об отмене судебного приказа', price: '1 500 ₽' },
+            { name: 'Заявление о разблокировке счёта (115-ФЗ)', price: '2 500 ₽' },
+            { name: 'Жалоба в ЦБ / межведомственную комиссию', price: '2 000 ₽' }
+        ]
+    },
+    {
+        category: 'Семейное право',
+        items: [
+            { name: 'Исковое о расторжении брака', price: '2 000 ₽' },
+            { name: 'Исковое о взыскании алиментов', price: '2 000 ₽' },
+            { name: 'Соглашение об уплате алиментов', price: '2 500 ₽' },
+            { name: 'Исковое об определении места жительства ребёнка', price: '3 000 ₽' },
+            { name: 'Письменная консультация по семейному спору', price: '800 ₽' }
+        ]
+    },
+    {
+        category: 'ДТП и автоправо',
+        items: [
+            { name: 'Претензия в страховую по ОСАГО / КАСКО', price: '2 000 ₽' },
+            { name: 'Исковое к виновнику ДТП', price: '2 500 ₽' },
+            { name: 'Жалоба в ГИБДД / на отказ в выплате', price: '1 800 ₽' },
+            { name: 'Письменная консультация по ДТП', price: '800 ₽' }
+        ]
+    },
+    {
+        category: 'Защита прав потребителей',
+        items: [
+            { name: 'Претензия продавцу / исполнителю', price: '1 500 ₽' },
+            { name: 'Исковое о возврате денег / расторжении договора', price: '2 000 ₽' },
+            { name: 'Жалоба в Роспотребнадзор', price: '1 500 ₽' },
+            { name: 'Письменная консультация', price: '800 ₽' }
+        ]
+    },
+    {
+        category: 'Трудовые споры',
+        items: [
+            { name: 'Жалоба на незаконное увольнение', price: '2 000 ₽' },
+            { name: 'Исковое о восстановлении на работе', price: '3 000 ₽' },
+            { name: 'Исковое о взыскании зарплаты / компенсаций', price: '2 500 ₽' },
+            { name: 'Письменная консультация по трудовому спору', price: '800 ₽' }
+        ]
+    },
+    {
+        category: 'Наследство и недвижимость',
+        items: [
+            { name: 'Исковое о признании права на наследство', price: '3 500 ₽' },
+            { name: 'Заявление о восстановлении срока принятия наследства', price: '2 500 ₽' },
+            { name: 'Договор купли-продажи / дарения (проект)', price: '3 000 ₽' },
+            { name: 'Письменная консультация', price: '1 000 ₽' }
+        ]
+    },
+    {
+        category: 'Договоры и соглашения',
+        items: [
+            { name: 'Договор оказания услуг / подряда', price: '3 000 ₽' },
+            { name: 'Договор займа / расписка', price: '1 500 ₽' },
+            { name: 'Соглашение о расторжении / доп. соглашение', price: '2 000 ₽' },
+            { name: 'Претензия по договору', price: '1 800 ₽' }
+        ]
+    },
+    {
+        category: 'Исполнительное производство',
+        items: [
+            { name: 'Заявление судебному приставу', price: '1 300 ₽' },
+            { name: 'Жалоба на действия / бездействие пристава', price: '1 800 ₽' },
+            { name: 'Заявление об отложении / рассрочке исполнения', price: '1 500 ₽' },
+            { name: 'Письменная консультация', price: '800 ₽' }
+        ]
+    },
+    {
+        category: 'Жилищное право и ЖКХ',
+        items: [
+            { name: 'Претензия управляющей компании', price: '1 500 ₽' },
+            { name: 'Исковое о перерасчёте / взыскании с УК', price: '2 000 ₽' },
+            { name: 'Исковое о выселении / вселении', price: '3 000 ₽' },
+            { name: 'Письменная консультация', price: '800 ₽' }
+        ]
+    },
+    {
+        category: 'Гражданские споры',
+        items: [
+            { name: 'Исковое заявление (общее)', price: '2 000 ₽' },
+            { name: 'Возражение / отзыв на иск', price: '2 000 ₽' },
+            { name: 'Апелляционная / кассационная жалоба', price: '4 000 ₽' },
+            { name: 'Письменная консультация', price: '800 ₽' }
+        ]
+    },
+    {
+        category: 'Административное право',
+        items: [
+            { name: 'Жалоба на постановление об административном правонарушении', price: '2 000 ₽' },
+            { name: 'Заявление в госорган', price: '1 500 ₽' },
+            { name: 'Письменная консультация', price: '800 ₽' }
+        ]
+    },
+    {
+        category: 'Письменные консультации',
+        items: [
+            { name: 'Краткая письменная консультация', price: '800 ₽' },
+            { name: 'Развёрнутая консультация с анализом документов', price: '1 500 ₽' },
+            { name: 'Правовое заключение', price: '3 000 ₽' }
+        ]
+    }
 ];
 
 function renderPricing(filter = '') {
     const grid = document.getElementById('pricingGrid');
+    const q = filter.toLowerCase().trim();
     const filtered = pricingData.filter(p =>
-        p.category.toLowerCase().includes(filter.toLowerCase()) ||
-        p.items.some(i => i.name.toLowerCase().includes(filter.toLowerCase()))
+        p.category.toLowerCase().includes(q) ||
+        p.items.some(i => i.name.toLowerCase().includes(q))
     );
 
     if (filtered.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-12">Ничего не найдено по вашему запросу</div>';
+        grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-12">Ничего не найдено по вашему запросу. Попробуйте другое слово или оставьте заявку.</div>';
         return;
     }
 
@@ -52,8 +134,8 @@ function renderPricing(filter = '') {
                 <h3 class="text-lg font-bold text-white mb-4 pb-3 border-b border-[#c9a96e]/20 break-words">${item.category}</h3>
                 <ul class="space-y-3 text-sm text-gray-300">
                     ${item.items.map(i => `
-                        <li class="flex justify-between items-center gap-2">
-                            <span class="min-w-0 break-words">${i.name}</span>
+                        <li class="flex justify-between items-start gap-3">
+                            <span class="min-w-0 break-words leading-snug">${i.name}</span>
                             <span class="font-bold text-[#c9a96e] whitespace-nowrap flex-shrink-0">${i.price}</span>
                         </li>
                     `).join('')}
@@ -96,20 +178,23 @@ function closeModal(id) {
     document.getElementById(id).classList.add('hidden');
     document.body.style.overflow = '';
 }
-// Закрытие по клику на затемнённый фон
-['pdModal', 'policyModal', 'successModal'].forEach(id => {
-    document.getElementById(id).addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) closeModal(id);
-    });
+['pdModal', 'policyModal', 'successModal', 'payModal'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+        el.addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal(id);
+        });
+    }
 });
-// Закрытие по Esc
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        ['pdModal', 'policyModal', 'successModal'].forEach(id => closeModal(id));
+        ['pdModal', 'policyModal', 'successModal', 'payModal'].forEach(id => {
+            if (document.getElementById(id)) closeModal(id);
+        });
     }
 });
 
-// Тосты (всплывающие уведомления)
+// Тосты
 function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
     const toast = document.createElement('div');
@@ -123,29 +208,22 @@ function showToast(message, type = 'success') {
     setTimeout(() => toast.remove(), 4000);
 }
 
-// ============================================================
-// ОТПРАВКА ФОРМЫ НА ПОЧТУ ЧЕРЕЗ FORMSPREE
-// ============================================================
+// Formspree
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjgnpwyr';
-
 const leadForm = document.getElementById('leadForm');
 const submitBtn = document.getElementById('submitBtn');
 
 leadForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка...';
-
     const formData = new FormData(leadForm);
-
     try {
         const response = await fetch(FORMSPREE_ENDPOINT, {
             method: 'POST',
             body: formData,
             headers: { 'Accept': 'application/json' }
         });
-
         if (response.ok) {
             document.getElementById('successModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -162,7 +240,7 @@ leadForm.addEventListener('submit', async (e) => {
     }
 });
 
-// Cookies баннер
+// Cookies
 const cookieBanner = document.getElementById('cookieBanner');
 const acceptCookies = document.getElementById('acceptCookies');
 if (!localStorage.getItem('cookiesAccepted')) {
@@ -173,7 +251,7 @@ acceptCookies.addEventListener('click', () => {
     cookieBanner.classList.add('hidden');
 });
 
-// Плавное появление блоков при прокрутке
+// Fade-in
 const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -184,7 +262,7 @@ const fadeObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
-// Подсветка активного пункта меню + кнопка "наверх"
+// Active nav + scroll top
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 const scrollTopBtn = document.getElementById('scrollTopBtn');
@@ -199,7 +277,6 @@ window.addEventListener('scroll', () => {
     navLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
-
     scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
 }, { passive: true });
 
