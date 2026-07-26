@@ -1,5 +1,11 @@
+# https://simaklawyer.github.io/robots.txt
 User-agent: *
 Allow: /
-Disallow: /404.html
 
+# Служебные и верификационные файлы — индексировать не нужно
+Disallow: /404.html
+Disallow: /googlef4c952e145dcfcb9.html
+Disallow: /yandex_95586af8c18c526f.html
+
+# Карта сайта
 Sitemap: https://simaklawyer.github.io/sitemap.xml
