@@ -285,3 +285,10 @@ scrollTopBtn.addEventListener('click', () => {
 });
 
 renderPricing();
+
+// Service Worker — ускоряет повторные загрузки
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+    });
+}
