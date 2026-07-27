@@ -1,5 +1,5 @@
 /* Service Worker — кэш статики для быстрой повторной загрузки */
-const CACHE = 'simaklawyer-v2';
+const CACHE = 'simaklawyer-v3';
 const PRECACHE = [
   '/',
   '/index.html',

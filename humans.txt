@@ -8,5 +8,5 @@ Telegram: https://t.me/simaklawyer
 /* SITE */
 Last update: 2026-07-27
 Language: Russian
-Standards: HTML5, CSS3, Schema.org
-Components: Tailwind CSS (local build), Lucide Icons, Yandex.Metrika, Formspree, YooKassa
+Standards: HTML5, CSS3, Schema.org JSON-LD
+Components: Tailwind CSS, Lucide Icons, vanilla-cookieconsent, instant.page, Yandex.Metrika, Formspree, YooKassa, Service Worker
