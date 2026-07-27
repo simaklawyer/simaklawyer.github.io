@@ -1,0 +1,16 @@
+{
+  "name": "simaklawyer-website",
+  "version": "1.0.0",
+  "description": "Одностраничный сайт-лендинг для самозанятого юриста.",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i tw-src/input.css -o styles.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

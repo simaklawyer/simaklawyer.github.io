@@ -1,11 +1,13 @@
 /* Service Worker — кэш статики для быстрой повторной загрузки */
-const CACHE = 'simaklawyer-v1';
+const CACHE = 'simaklawyer-v2';
 const PRECACHE = [
   '/',
   '/index.html',
   '/styles.css',
   '/script.js',
+  '/cookie-consent.js',
   '/favicon.svg',
+  '/og-image.png',
   '/manifest.json',
   '/404.html'
 ];

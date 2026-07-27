@@ -6,7 +6,7 @@ Contact: Arrusi@bk.ru
 Telegram: https://t.me/simaklawyer
 
 /* SITE */
-Last update: 2026-07-26
+Last update: 2026-07-27
 Language: Russian
 Standards: HTML5, CSS3, Schema.org
-Components: Tailwind CSS (CDN), Lucide Icons, Yandex.Metrika, Formspree, YooKassa
+Components: Tailwind CSS (local build), Lucide Icons, Yandex.Metrika, Formspree, YooKassa
