@@ -40,91 +40,97 @@ function maybeLoadAnalytics() {
     } catch (e) { /* ignore */ }
 }
 
-CookieConsent.run({
-    guiOptions: {
-        consentModal: {
-            layout: 'box wide',
-            position: 'bottom center',
-            equalWeightButtons: true,
-            flipButtons: false
-        },
-        preferencesModal: {
-            layout: 'box',
-            equalWeightButtons: true,
-            flipButtons: false
-        }
-    },
-    categories: {
-        necessary: {
-            enabled: true,
-            readOnly: true
-        },
-        analytics: {
-            autoClear: {
-                cookies: [
-                    { name: /^_ym_/ },
-                    { name: /^ymex/ },
-                    { name: /^yandexuid/ }
-                ]
+(function initCookieConsent() {
+    if (typeof CookieConsent === 'undefined') {
+        console.warn('CookieConsent не загружен — баннер cookie отключён');
+        return;
+    }
+
+    CookieConsent.run({
+        guiOptions: {
+            consentModal: {
+                layout: 'box wide',
+                position: 'bottom center',
+                equalWeightButtons: true,
+                flipButtons: false
+            },
+            preferencesModal: {
+                layout: 'box',
+                equalWeightButtons: true,
+                flipButtons: false
             }
-        }
-    },
-    language: {
-        default: 'ru',
-        translations: {
-            ru: {
-                consentModal: {
-                    title: 'Мы используем cookie',
-                    description:
-                        'На сайте применяются необходимые cookie для работы страницы и (по вашему согласию) аналитические cookie Яндекс.Метрики — чтобы понимать, как улучшать сервис. Подробнее в <a href="#" data-cc="show-preferencesModal">настройках</a> и в политике конфиденциальности.',
-                    acceptAllBtn: 'Принять все',
-                    acceptNecessaryBtn: 'Только необходимые',
-                    showPreferencesBtn: 'Настроить'
-                },
-                preferencesModal: {
-                    title: 'Настройки cookie',
-                    acceptAllBtn: 'Принять все',
-                    acceptNecessaryBtn: 'Только необходимые',
-                    savePreferencesBtn: 'Сохранить',
-                    closeIconLabel: 'Закрыть',
-                    sections: [
-                        {
-                            title: 'Использование cookie',
-                            description:
-                                'Cookie — небольшие файлы на вашем устройстве. Вы можете принять все категории или только необходимые. Отказ от аналитики не мешает пользоваться сайтом и отправлять заявки.'
-                        },
-                        {
-                            title: 'Необходимые',
-                            description:
-                                'Нужны для базовой работы сайта (например, запоминание вашего выбора cookie). Отключить нельзя.',
-                            linkedCategory: 'necessary'
-                        },
-                        {
-                            title: 'Аналитика (Яндекс.Метрика)',
-                            description:
-                                'Помогает видеть посещаемость и поведение на сайте (счётчик 111039693). Данные обрабатываются в соответствии с политикой конфиденциальности. Без согласия скрипт Метрики не загружается.',
-                            linkedCategory: 'analytics'
-                        },
-                        {
-                            title: 'Контакты',
-                            description:
-                                'Вопросы по обработке данных: <a href="mailto:Arrusi@bk.ru">Arrusi@bk.ru</a>, тел. 8 (965) 241-30-38. Симаков В.Ю., самозанятый, ИНН 253202682567.'
-                        }
+        },
+        categories: {
+            necessary: {
+                enabled: true,
+                readOnly: true
+            },
+            analytics: {
+                autoClear: {
+                    cookies: [
+                        { name: /^_ym_/ },
+                        { name: /^ymex/ },
+                        { name: /^yandexuid/ }
                     ]
                 }
             }
+        },
+        language: {
+            default: 'ru',
+            translations: {
+                ru: {
+                    consentModal: {
+                        title: 'Мы используем cookie',
+                        description:
+                            'На сайте применяются необходимые cookie для работы страницы и (по вашему согласию) аналитические cookie Яндекс.Метрики — чтобы понимать, как улучшать сервис. Подробнее в <a href="#" data-cc="show-preferencesModal">настройках</a> и в политике конфиденциальности.',
+                        acceptAllBtn: 'Принять все',
+                        acceptNecessaryBtn: 'Только необходимые',
+                        showPreferencesBtn: 'Настроить'
+                    },
+                    preferencesModal: {
+                        title: 'Настройки cookie',
+                        acceptAllBtn: 'Принять все',
+                        acceptNecessaryBtn: 'Только необходимые',
+                        savePreferencesBtn: 'Сохранить',
+                        closeIconLabel: 'Закрыть',
+                        sections: [
+                            {
+                                title: 'Использование cookie',
+                                description:
+                                    'Cookie — небольшие файлы на вашем устройстве. Вы можете принять все категории или только необходимые. Отказ от аналитики не мешает пользоваться сайтом и отправлять заявки.'
+                            },
+                            {
+                                title: 'Необходимые',
+                                description:
+                                    'Нужны для базовой работы сайта (например, запоминание вашего выбора cookie). Отключить нельзя.',
+                                linkedCategory: 'necessary'
+                            },
+                            {
+                                title: 'Аналитика (Яндекс.Метрика)',
+                                description:
+                                    'Помогает видеть посещаемость и поведение на сайте (счётчик 111039693). Данные обрабатываются в соответствии с политикой конфиденциальности. Без согласия скрипт Метрики не загружается.',
+                                linkedCategory: 'analytics'
+                            },
+                            {
+                                title: 'Контакты',
+                                description:
+                                    'Вопросы по обработке данных: <a href="mailto:Arrusi@bk.ru">Arrusi@bk.ru</a>, тел. 8 (965) 241-30-38. Симаков В.Ю., самозанятый, ИНН 253202682567.'
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        onFirstConsent: function () {
+            maybeLoadAnalytics();
+        },
+        onConsent: function () {
+            maybeLoadAnalytics();
+        },
+        onChange: function () {
+            maybeLoadAnalytics();
         }
-    },
-    onFirstConsent: function () {
-        maybeLoadAnalytics();
-    },
-    onConsent: function () {
-        maybeLoadAnalytics();
-    },
-    onChange: function () {
-        maybeLoadAnalytics();
-    }
-});
+    });
 
-// Если согласие уже было дано ранее — подключаем Метрику сразу
-maybeLoadAnalytics();
+    maybeLoadAnalytics();
+})();
