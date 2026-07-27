@@ -1,11 +1,29 @@
 /* ============================================================
-   Симаков В.Ю. — скрипты сайта
+   Симаков В.Ю. — скрипты сайта (v2.0)
    ============================================================ */
 
-if (typeof lucide !== 'undefined') {
-    lucide.createIcons();
+/**
+ * Инициализация иконок Lucide
+ * Используем селектор для обновления только необходимых элементов, если это возможно
+ */
+function initIcons(container = document) {
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons({
+            attrs: {
+                class: 'lucide-icon'
+            },
+            nameAttr: 'data-lucide'
+        });
+    }
 }
 
+// Первичная инициализация
+document.addEventListener('DOMContentLoaded', () => initIcons());
+
+/**
+ * Данные прайс-листа
+ * Оставлены в JS-файле для лучшей индексации поисковыми роботами (SEO)
+ */
 const pricingData = [
     {
         category: 'Судебные приказы и срочные меры',
@@ -116,9 +134,13 @@ const pricingData = [
     }
 ];
 
+/**
+ * Рендеринг прайс-листа с фильтрацией
+ */
 function renderPricing(filter = '') {
     const grid = document.getElementById('pricingGrid');
     if (!grid) return;
+
     const q = filter.toLowerCase().trim();
     const filtered = pricingData.filter(p =>
         p.category.toLowerCase().includes(q) ||
@@ -126,12 +148,15 @@ function renderPricing(filter = '') {
     );
 
     if (filtered.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-12">Ничего не найдено по вашему запросу. Попробуйте другое слово или оставьте заявку.</div>';
+        grid.innerHTML = `
+            <div class="col-span-full text-center text-gray-500 py-12 fade-in visible">
+                Ничего не найдено по вашему запросу. Попробуйте другое слово или оставьте заявку.
+            </div>`;
         return;
     }
 
     grid.innerHTML = filtered.map(item => `
-        <div class="card-dark rounded-2xl p-6 flex flex-col justify-between min-w-0">
+        <div class="card-dark rounded-2xl p-6 flex flex-col justify-between min-w-0 fade-in visible">
             <div class="min-w-0">
                 <h3 class="text-lg font-bold text-white mb-4 pb-3 border-b border-[#c9a96e]/20 break-words">${item.category}</h3>
                 <ul class="space-y-3 text-sm text-gray-300">
@@ -147,75 +172,120 @@ function renderPricing(filter = '') {
         </div>
     `).join('');
 
-    if (typeof lucide !== 'undefined') lucide.createIcons();
+    // Инициализируем иконки только если они есть в новом контенте
+    initIcons(grid);
 }
 
+/**
+ * Вспомогательная функция для задержки (Debounce)
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Поиск по прайсу с задержкой 300мс
 const pricingSearch = document.getElementById('pricingSearch');
 if (pricingSearch) {
-    pricingSearch.addEventListener('input', (e) => renderPricing(e.target.value));
+    const handleSearch = debounce((e) => renderPricing(e.target.value), 300);
+    pricingSearch.addEventListener('input', handleSearch);
 }
 
+/**
+ * Мобильное меню
+ */
 const menuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.toggle('hidden');
-        menuBtn.setAttribute('aria-expanded', String(!isHidden));
-    });
-    document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            menuBtn.setAttribute('aria-expanded', 'false');
-        });
+    const toggleMenu = (show) => {
+        const isHidden = show !== undefined ? !show : !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden', !isHidden);
+        menuBtn.setAttribute('aria-expanded', String(isHidden));
+    };
+
+    menuBtn.addEventListener('click', () => toggleMenu());
+    
+    // Закрытие при клике на ссылку
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target.closest('.mobile-link')) toggleMenu(false);
     });
 }
 
-function openModal(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-    if (typeof lucide !== 'undefined') lucide.createIcons();
-}
-function closeModal(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.add('hidden');
-    document.body.style.overflow = '';
-}
-window.openModal = openModal;
-window.closeModal = closeModal;
-
-['pdModal', 'policyModal', 'successModal', 'payModal'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-        el.addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) closeModal(id);
+/**
+ * Управление модальными окнами
+ */
+const modalLogic = {
+    open(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        initIcons(el);
+    },
+    close(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add('hidden');
+        // Проверяем, нет ли других открытых модалок перед включением скролла
+        const otherOpen = document.querySelectorAll('.modal:not(.hidden)').length > 0;
+        if (!otherOpen) document.body.style.overflow = '';
+    },
+    closeAll() {
+        document.querySelectorAll('[id$="Modal"]').forEach(modal => {
+            if (!modal.classList.contains('hidden')) this.close(modal.id);
         });
     }
+};
+
+// Экспортируем в window для вызова из HTML
+window.openModal = modalLogic.open;
+window.closeModal = modalLogic.close;
+
+// Закрытие по клику на оверлей
+document.querySelectorAll('[id$="Modal"]').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) modalLogic.close(modal.id);
+    });
 });
+
+// Закрытие по ESC
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        ['pdModal', 'policyModal', 'successModal', 'payModal'].forEach(id => {
-            if (document.getElementById(id)) closeModal(id);
-        });
-    }
+    if (e.key === 'Escape') modalLogic.closeAll();
 });
 
+/**
+ * Уведомления (Toast)
+ */
 function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
     if (!container) return;
+    
     const toast = document.createElement('div');
-    toast.className = `toast ${type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white px-5 py-4 rounded-xl shadow-xl flex items-center gap-3 w-full sm:min-w-[300px] sm:w-auto`;
+    toast.className = `toast ${type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white px-5 py-4 rounded-xl shadow-xl flex items-center gap-3 w-full sm:min-w-[300px] sm:w-auto animate-fade-in`;
     toast.innerHTML = `
         <i data-lucide="${type === 'success' ? 'check-circle' : 'x-circle'}" class="w-5 h-5 flex-shrink-0"></i>
         <span class="font-medium text-sm">${message}</span>
     `;
+    
     container.appendChild(toast);
-    if (typeof lucide !== 'undefined') lucide.createIcons();
-    setTimeout(() => toast.remove(), 4000);
+    initIcons(toast);
+    
+    setTimeout(() => {
+        toast.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+        setTimeout(() => toast.remove(), 500);
+    }, 4000);
 }
 
+/**
+ * Обработка формы (Formspree)
+ */
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjgnpwyr';
 const leadForm = document.getElementById('leadForm');
 const submitBtn = document.getElementById('submitBtn');
@@ -223,32 +293,43 @@ const submitBtn = document.getElementById('submitBtn');
 if (leadForm && submitBtn) {
     leadForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        // Базовая валидация
+        const phone = leadForm.querySelector('[name="phone"]')?.value;
+        if (phone && phone.replace(/\D/g, '').length < 10) {
+            showToast('Пожалуйста, введите корректный номер телефона', 'error');
+            return;
+        }
+
         submitBtn.disabled = true;
+        const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Отправка...';
-        const formData = new FormData(leadForm);
+        
         try {
             const response = await fetch(FORMSPREE_ENDPOINT, {
                 method: 'POST',
-                body: formData,
+                body: new FormData(leadForm),
                 headers: { 'Accept': 'application/json' }
             });
+            
             if (response.ok) {
-                document.getElementById('successModal').classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-                if (typeof lucide !== 'undefined') lucide.createIcons();
+                modalLogic.open('successModal');
                 leadForm.reset();
             } else {
-                showToast('Не удалось отправить заявку. Попробуйте ещё раз или позвоните напрямую.', 'error');
+                showToast('Ошибка сервера. Попробуйте позже или напишите в Telegram.', 'error');
             }
         } catch (error) {
-            showToast('Ошибка сети. Проверьте соединение и попробуйте снова.', 'error');
+            showToast('Ошибка сети. Проверьте интернет-соединение.', 'error');
         } finally {
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Отправить заявку';
+            submitBtn.textContent = originalText;
         }
     });
 }
 
+/**
+ * Анимации появления (Intersection Observer)
+ */
 const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -257,24 +338,36 @@ const fadeObserver = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.12 });
+
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
+/**
+ * Навигация и кнопка "Вверх"
+ */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 const scrollTopBtn = document.getElementById('scrollTopBtn');
 
-window.addEventListener('scroll', () => {
+const handleScroll = () => {
     let current = '';
+    const scrollPos = window.scrollY + 150;
+
     sections.forEach(section => {
-        if (window.scrollY >= section.offsetTop - 150) {
+        if (scrollPos >= section.offsetTop) {
             current = section.getAttribute('id');
         }
     });
+
     navLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
-    if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
-}, { passive: true });
+
+    if (scrollTopBtn) {
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+    }
+};
+
+window.addEventListener('scroll', handleScroll, { passive: true });
 
 if (scrollTopBtn) {
     scrollTopBtn.addEventListener('click', () => {
@@ -282,8 +375,12 @@ if (scrollTopBtn) {
     });
 }
 
+// Инициализация прайса при загрузке
 renderPricing();
 
+/**
+ * Service Worker
+ */
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch(() => {});
