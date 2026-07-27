@@ -282,10 +282,7 @@ if (scrollTopBtn) {
     });
 }
 
-// Прайс уже в HTML (SEO). JS — только при поиске / непустом поле.
-if (pricingSearch && pricingSearch.value.trim()) {
-    renderPricing(pricingSearch.value);
-}
+renderPricing();
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
