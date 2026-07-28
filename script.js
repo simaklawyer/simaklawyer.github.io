@@ -1,5 +1,5 @@
 /* ============================================================
-   Симаков В.Ю. — скрипты сайта (v2.1)
+   Симаков В.Ю. — скрипты сайта (v2.2)
    ============================================================ */
 
 function initIcons(container = document) {
@@ -11,7 +11,100 @@ function initIcons(container = document) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => initIcons());
+document.addEventListener('DOMContentLoaded', () => {
+    initIcons();
+    enhancePrivacyAndFaqLinks();
+    initFaqAccordion();
+});
+
+/** Полная политика + ссылки FAQ в подвале и модалке */
+function enhancePrivacyAndFaqLinks() {
+    const policyModal = document.getElementById('policyModal');
+    if (policyModal) {
+        const box = policyModal.querySelector('.text-sm');
+        if (box && !box.innerHTML.includes('/privacy.html')) {
+            const p = document.createElement('p');
+            p.innerHTML = '<a href="/privacy.html" class="text-[#c9a96e] underline hover:text-[#e8d5a3]">Открыть полную политику конфиденциальности →</a>';
+            box.appendChild(p);
+        }
+        // Кнопка «Политика» в подвале ведёт на страницу, а не только модалку
+        document.querySelectorAll('button[onclick*="policyModal"]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // оставляем модалку, плюс можно уйти на полную страницу из неё
+            });
+        });
+    }
+
+    // Добавить FAQ и Политику в ряд ссылок подвала
+    const footerNav = document.querySelector('footer .max-w-7xl.mx-auto.mt-6.flex');
+    if (footerNav && !footerNav.querySelector('a[href="/faq.html"]')) {
+        const faq = document.createElement('a');
+        faq.href = '/faq.html';
+        faq.className = 'hover:text-[#c9a96e] transition';
+        faq.textContent = 'FAQ';
+        footerNav.insertBefore(faq, footerNav.firstChild);
+
+        const priv = document.createElement('a');
+        priv.href = '/privacy.html';
+        priv.className = 'hover:text-[#c9a96e] transition underline';
+        priv.textContent = 'Политика (полная)';
+        footerNav.appendChild(priv);
+    }
+
+    // В десктоп-навигацию — FAQ
+    const nav = document.querySelector('nav .hidden.lg\\:flex, nav .hidden.lg\\:flex.items-center');
+    const navLinks = document.querySelector('nav div.hidden.lg\\:flex');
+    // fallback: найти контейнер с nav-link
+    const navContainer = document.querySelector('nav .hidden.lg\\:flex') ||
+        Array.from(document.querySelectorAll('nav div')).find(d => d.querySelector('.nav-link'));
+    if (navContainer && !navContainer.querySelector('a[href="/faq.html"]') && !navContainer.querySelector('a[href="#faq"]')) {
+        const a = document.createElement('a');
+        a.href = '/faq.html';
+        a.className = 'nav-link text-sm font-medium text-gray-300 hover:text-[#c9a96e] transition';
+        a.textContent = 'FAQ';
+        const contactBtn = navContainer.querySelector('a.btn-gold, a[href="#contact"]');
+        if (contactBtn) navContainer.insertBefore(a, contactBtn);
+        else navContainer.appendChild(a);
+    }
+
+    // Мобильное меню
+    const mobile = document.getElementById('mobileMenu');
+    if (mobile && !mobile.querySelector('a[href="/faq.html"]')) {
+        const a = document.createElement('a');
+        a.href = '/faq.html';
+        a.className = 'mobile-link py-2 text-gray-300 hover:text-[#c9a96e]';
+        a.textContent = 'FAQ';
+        const col = mobile.querySelector('.flex.flex-col');
+        if (col) {
+            const last = col.querySelector('a.btn-gold, a[href="#contact"]');
+            if (last) col.insertBefore(a, last);
+            else col.appendChild(a);
+        }
+    }
+}
+
+/** FAQ-аккордеон на главной (если секция #faq есть) */
+function initFaqAccordion() {
+    document.querySelectorAll('.faq-item .faq-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const panel = item.querySelector('.faq-panel');
+            const open = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(other => {
+                other.classList.remove('open');
+                const p = other.querySelector('.faq-panel');
+                if (p) p.style.maxHeight = '0';
+                const b = other.querySelector('.faq-btn');
+                if (b) b.setAttribute('aria-expanded', 'false');
+            });
+            if (!open && panel) {
+                item.classList.add('open');
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+}
 
 const pricingData = [
     {
@@ -268,13 +361,9 @@ if (leadForm && submitBtn) {
     });
 }
 
-/* Fade-in: сразу показать всё видимое + observer для остального */
 function revealFadeIns() {
-    document.querySelectorAll('.fade-in').forEach(el => {
-        el.classList.add('visible');
-    });
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
 }
-
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', revealFadeIns);
 } else {
@@ -289,7 +378,6 @@ const fadeObserver = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.05, rootMargin: '50px' });
-
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
 const sections = document.querySelectorAll('section[id]');
@@ -305,15 +393,11 @@ window.addEventListener('scroll', () => {
     navLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
-    if (scrollTopBtn) {
-        scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
-    }
+    if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
 }, { passive: true });
 
 if (scrollTopBtn) {
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
 function selectService(category) {
