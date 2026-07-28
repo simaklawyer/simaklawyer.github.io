@@ -1,65 +1,39 @@
-/* Service Worker — кэш статики для быстрой повторной загрузки */
-const CACHE = 'simaklawyer-v3';
-const PRECACHE = [
+const CACHE_NAME = 'simaklawyer-v1';
+const ASSETS = [
   '/',
   '/index.html',
+  '/404.html',
   '/styles.css',
   '/script.js',
-  '/cookie-consent.js',
   '/favicon.svg',
-  '/og-image.png',
-  '/manifest.json',
-  '/404.html'
+  '/manifest.json'
 ];
 
+// Установка SW и кэширование ресурсов
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(ASSETS);
+    })
   );
 });
 
+// Активация и удаление старых кэшей
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+      );
+    })
   );
 });
 
-// Сеть в приоритете для HTML; кэш — для CSS/JS/иконок
+// Стратегия: Cache First, потом Network
 self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  if (request.method !== 'GET') return;
-
-  const url = new URL(request.url);
-  if (url.origin !== self.location.origin) return;
-
-  const isDocument = request.mode === 'navigate' ||
-    (request.headers.get('accept') || '').includes('text/html');
-
-  if (isDocument) {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put(request, copy));
-          return response;
-        })
-        .catch(() => caches.match(request).then((r) => r || caches.match('/index.html')))
-    );
-    return;
-  }
-
   event.respondWith(
-    caches.match(request).then((cached) => {
-      const network = fetch(request).then((response) => {
-        if (response && response.status === 200) {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put(request, copy));
-        }
-        return response;
-      }).catch(() => cached);
-      return cached || network;
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
     })
   );
 });

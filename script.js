@@ -168,7 +168,11 @@ function renderPricing(filter = '') {
                     `).join('')}
                 </ul>
             </div>
-            <a href="#contact" class="mt-6 block text-center border border-[#c9a96e]/30 hover:bg-[#c9a96e] hover:text-black text-[#c9a96e] py-2.5 rounded-xl font-medium transition text-sm">Заказать</a>
+            <a href="#contact" 
+               onclick="selectService('${item.category}')"
+               class="mt-6 block text-center border border-[#c9a96e]/30 hover:bg-[#c9a96e] hover:text-black text-[#c9a96e] py-2.5 rounded-xl font-medium transition text-sm">
+               Заказать
+            </a>
         </div>
     `).join('');
 
@@ -374,6 +378,18 @@ if (scrollTopBtn) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
+
+/**
+ * Выбор услуги из прайса
+ */
+function selectService(category) {
+    const messageField = document.querySelector('textarea[name="message"]');
+    if (messageField) {
+        messageField.value = `Здравствуйте! Интересует услуга из категории: ${category}. `;
+        messageField.focus();
+    }
+}
+window.selectService = selectService;
 
 // Инициализация прайса при загрузке
 renderPricing();
