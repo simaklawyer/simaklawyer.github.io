@@ -1,29 +1,18 @@
 /* ============================================================
-   Симаков В.Ю. — скрипты сайта (v2.0)
+   Симаков В.Ю. — скрипты сайта (v2.1)
    ============================================================ */
 
-/**
- * Инициализация иконок Lucide
- * Используем селектор для обновления только необходимых элементов, если это возможно
- */
 function initIcons(container = document) {
     if (typeof lucide !== 'undefined') {
         lucide.createIcons({
-            attrs: {
-                class: 'lucide-icon'
-            },
+            attrs: { class: 'lucide-icon' },
             nameAttr: 'data-lucide'
         });
     }
 }
 
-// Первичная инициализация
 document.addEventListener('DOMContentLoaded', () => initIcons());
 
-/**
- * Данные прайс-листа
- * Оставлены в JS-файле для лучшей индексации поисковыми роботами (SEO)
- */
 const pricingData = [
     {
         category: 'Судебные приказы и срочные меры',
@@ -134,9 +123,6 @@ const pricingData = [
     }
 ];
 
-/**
- * Рендеринг прайс-листа с фильтрацией
- */
 function renderPricing(filter = '') {
     const grid = document.getElementById('pricingGrid');
     if (!grid) return;
@@ -148,15 +134,12 @@ function renderPricing(filter = '') {
     );
 
     if (filtered.length === 0) {
-        grid.innerHTML = `
-            <div class="col-span-full text-center text-gray-500 py-12 fade-in visible">
-                Ничего не найдено по вашему запросу. Попробуйте другое слово или оставьте заявку.
-            </div>`;
+        grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-12">Ничего не найдено. Попробуйте другое слово или оставьте заявку.</div>';
         return;
     }
 
     grid.innerHTML = filtered.map(item => `
-        <div class="card-dark rounded-2xl p-6 flex flex-col justify-between min-w-0 fade-in visible">
+        <div class="card-dark rounded-2xl p-6 flex flex-col justify-between min-w-0">
             <div class="min-w-0">
                 <h3 class="text-lg font-bold text-white mb-4 pb-3 border-b border-[#c9a96e]/20 break-words">${item.category}</h3>
                 <ul class="space-y-3 text-sm text-gray-300">
@@ -168,63 +151,43 @@ function renderPricing(filter = '') {
                     `).join('')}
                 </ul>
             </div>
-            <a href="#contact" 
-               onclick="selectService('${item.category}')"
+            <a href="#contact"
+               onclick="selectService('${item.category.replace(/'/g, "\\'")}')"
                class="mt-6 block text-center border border-[#c9a96e]/30 hover:bg-[#c9a96e] hover:text-black text-[#c9a96e] py-2.5 rounded-xl font-medium transition text-sm">
                Заказать
             </a>
         </div>
     `).join('');
-
-    // Инициализируем иконки только если они есть в новом контенте
-    initIcons(grid);
 }
 
-/**
- * Вспомогательная функция для задержки (Debounce)
- */
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
         clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+        timeout = setTimeout(() => func(...args), wait);
     };
 }
 
-// Поиск по прайсу с задержкой 300мс
 const pricingSearch = document.getElementById('pricingSearch');
 if (pricingSearch) {
-    const handleSearch = debounce((e) => renderPricing(e.target.value), 300);
-    pricingSearch.addEventListener('input', handleSearch);
+    pricingSearch.addEventListener('input', debounce((e) => renderPricing(e.target.value), 300));
 }
 
-/**
- * Мобильное меню
- */
 const menuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 if (menuBtn && mobileMenu) {
-    const toggleMenu = (show) => {
-        const isHidden = show !== undefined ? !show : !mobileMenu.classList.contains('hidden');
-        mobileMenu.classList.toggle('hidden', !isHidden);
-        menuBtn.setAttribute('aria-expanded', String(isHidden));
-    };
-
-    menuBtn.addEventListener('click', () => toggleMenu());
-    
-    // Закрытие при клике на ссылку
+    menuBtn.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('hidden') === false;
+        menuBtn.setAttribute('aria-expanded', String(open));
+    });
     mobileMenu.addEventListener('click', (e) => {
-        if (e.target.closest('.mobile-link')) toggleMenu(false);
+        if (e.target.closest('.mobile-link')) {
+            mobileMenu.classList.add('hidden');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        }
     });
 }
 
-/**
- * Управление модальными окнами
- */
 const modalLogic = {
     open(id) {
         const el = document.getElementById(id);
@@ -237,9 +200,7 @@ const modalLogic = {
         const el = document.getElementById(id);
         if (!el) return;
         el.classList.add('hidden');
-        // Проверяем, нет ли других открытых модалок перед включением скролла
-        const otherOpen = document.querySelectorAll('.modal:not(.hidden)').length > 0;
-        if (!otherOpen) document.body.style.overflow = '';
+        document.body.style.overflow = '';
     },
     closeAll() {
         document.querySelectorAll('[id$="Modal"]').forEach(modal => {
@@ -248,48 +209,34 @@ const modalLogic = {
     }
 };
 
-// Экспортируем в window для вызова из HTML
 window.openModal = modalLogic.open;
 window.closeModal = modalLogic.close;
 
-// Закрытие по клику на оверлей
 document.querySelectorAll('[id$="Modal"]').forEach(modal => {
     modal.addEventListener('click', (e) => {
         if (e.target === e.currentTarget) modalLogic.close(modal.id);
     });
 });
 
-// Закрытие по ESC
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') modalLogic.closeAll();
 });
 
-/**
- * Уведомления (Toast)
- */
 function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
     if (!container) return;
-    
     const toast = document.createElement('div');
-    toast.className = `toast ${type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white px-5 py-4 rounded-xl shadow-xl flex items-center gap-3 w-full sm:min-w-[300px] sm:w-auto animate-fade-in`;
-    toast.innerHTML = `
-        <i data-lucide="${type === 'success' ? 'check-circle' : 'x-circle'}" class="w-5 h-5 flex-shrink-0"></i>
-        <span class="font-medium text-sm">${message}</span>
-    `;
-    
+    toast.className = (type === 'success' ? 'bg-green-600' : 'bg-red-600') +
+        ' text-white px-5 py-4 rounded-xl shadow-xl flex items-center gap-3 w-full sm:min-w-[300px] sm:w-auto';
+    toast.innerHTML = '<span class="font-medium text-sm">' + message + '</span>';
     container.appendChild(toast);
-    initIcons(toast);
-    
     setTimeout(() => {
-        toast.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity .5s';
         setTimeout(() => toast.remove(), 500);
     }, 4000);
 }
 
-/**
- * Обработка формы (Formspree)
- */
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjgnpwyr';
 const leadForm = document.getElementById('leadForm');
 const submitBtn = document.getElementById('submitBtn');
@@ -297,25 +244,15 @@ const submitBtn = document.getElementById('submitBtn');
 if (leadForm && submitBtn) {
     leadForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // Базовая валидация
-        const phone = leadForm.querySelector('[name="phone"]')?.value;
-        if (phone && phone.replace(/\D/g, '').length < 10) {
-            showToast('Пожалуйста, введите корректный номер телефона', 'error');
-            return;
-        }
-
         submitBtn.disabled = true;
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Отправка...';
-        
         try {
             const response = await fetch(FORMSPREE_ENDPOINT, {
                 method: 'POST',
                 body: new FormData(leadForm),
                 headers: { 'Accept': 'application/json' }
             });
-            
             if (response.ok) {
                 modalLogic.open('successModal');
                 leadForm.reset();
@@ -331,9 +268,19 @@ if (leadForm && submitBtn) {
     });
 }
 
-/**
- * Анимации появления (Intersection Observer)
- */
+/* Fade-in: сразу показать всё видимое + observer для остального */
+function revealFadeIns() {
+    document.querySelectorAll('.fade-in').forEach(el => {
+        el.classList.add('visible');
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', revealFadeIns);
+} else {
+    revealFadeIns();
+}
+
 const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -341,37 +288,27 @@ const fadeObserver = new IntersectionObserver((entries) => {
             fadeObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.12 });
+}, { threshold: 0.05, rootMargin: '50px' });
 
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
-/**
- * Навигация и кнопка "Вверх"
- */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 const scrollTopBtn = document.getElementById('scrollTopBtn');
 
-const handleScroll = () => {
+window.addEventListener('scroll', () => {
     let current = '';
     const scrollPos = window.scrollY + 150;
-
     sections.forEach(section => {
-        if (scrollPos >= section.offsetTop) {
-            current = section.getAttribute('id');
-        }
+        if (scrollPos >= section.offsetTop) current = section.getAttribute('id');
     });
-
     navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
-
     if (scrollTopBtn) {
         scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
     }
-};
-
-window.addEventListener('scroll', handleScroll, { passive: true });
+}, { passive: true });
 
 if (scrollTopBtn) {
     scrollTopBtn.addEventListener('click', () => {
@@ -379,24 +316,27 @@ if (scrollTopBtn) {
     });
 }
 
-/**
- * Выбор услуги из прайса
- */
 function selectService(category) {
-    const messageField = document.querySelector('textarea[name="message"]');
+    const serviceSelect = document.getElementById('clientService');
+    const messageField = document.getElementById('clientMsg');
+    if (serviceSelect) {
+        for (let i = 0; i < serviceSelect.options.length; i++) {
+            if (serviceSelect.options[i].text.includes(category.split(' ')[0]) ||
+                category.includes(serviceSelect.options[i].text)) {
+                serviceSelect.selectedIndex = i;
+                break;
+            }
+        }
+    }
     if (messageField) {
-        messageField.value = `Здравствуйте! Интересует услуга из категории: ${category}. `;
+        messageField.value = 'Здравствуйте! Интересует услуга из категории: ' + category + '. ';
         messageField.focus();
     }
 }
 window.selectService = selectService;
 
-// Инициализация прайса при загрузке
 renderPricing();
 
-/**
- * Service Worker
- */
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch(() => {});
