@@ -5,6 +5,7 @@ Allow: /
 # Служебные и верификационные файлы — индексировать не нужно
 Disallow: /404.html
 Disallow: /googlef4c952e145dcfcb9.html
+Disallow: /googlecf490da6c916be7e.html
 Disallow: /yandex_95586af8c18c526f.html
 
 # Карта сайта
