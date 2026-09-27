@@ -50,6 +50,8 @@ npm run build:css  # пересобрать styles.css
 
 ```
 ├── index.html          — главная
+├── services/voennoe-pravo.html — посадочная страница военного права
+├── services/intellectual-property.html — посадочная страница ИС и товарных знаков
 ├── 404.html
 ├── styles.css           — собранный CSS (не редактировать руками, см. выше)
 ├── tw-src/input.css      — исходник стилей (редактировать здесь)
