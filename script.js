@@ -207,6 +207,22 @@ const pricingData = [
         ]
     },
     {
+        category: 'Военное право',
+        items: [
+            { name: 'Правовой анализ ситуации военнослужащего', price: 'от 1 500 ₽' },
+            { name: 'Рапорт / жалоба по вопросам военной службы', price: 'от 2 000 ₽' },
+            { name: 'Письменная консультация по военному праву', price: 'от 1 000 ₽' }
+        ]
+    },
+    {
+        category: 'Интеллектуальная собственность и товарные знаки',
+        items: [
+            { name: 'Правовой анализ использования объекта ИС', price: 'от 2 000 ₽' },
+            { name: 'Претензия по нарушению прав на товарный знак', price: 'от 2 500 ₽' },
+            { name: 'Консультация по товарному знаку и авторским правам', price: 'от 1 500 ₽' }
+        ]
+    },
+    {
         category: 'Письменные консультации',
         items: [
             { name: 'Краткая письменная консультация', price: '800 ₽' },
@@ -330,36 +346,7 @@ function showToast(message, type = 'success') {
     }, 4000);
 }
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjgnpwyr';
-const leadForm = document.getElementById('leadForm');
-const submitBtn = document.getElementById('submitBtn');
-
-if (leadForm && submitBtn) {
-    leadForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        submitBtn.disabled = true;
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Отправка...';
-        try {
-            const response = await fetch(FORMSPREE_ENDPOINT, {
-                method: 'POST',
-                body: new FormData(leadForm),
-                headers: { 'Accept': 'application/json' }
-            });
-            if (response.ok) {
-                modalLogic.open('successModal');
-                leadForm.reset();
-            } else {
-                showToast('Ошибка сервера. Попробуйте позже или напишите в Telegram.', 'error');
-            }
-        } catch (error) {
-            showToast('Ошибка сети. Проверьте интернет-соединение.', 'error');
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        }
-    });
-}
+/* Заявки через встроенную форму отключены: сайт использует прямые контакты. */
 
 function revealFadeIns() {
     document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
